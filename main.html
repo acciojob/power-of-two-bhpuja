@@ -1,16 +1,72 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Of Two</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #inputNumber {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #checkButton {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #checkButton:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+    <h1>Check Power Of Two</h1>
+    <input type="number" id="inputNumber" placeholder="Enter a number">
+    <button id="checkButton">Check</button>
+    <div id="result"></div>
 
+    <script>
+        function isPowerOfTwo(number) {
+            if (number <= 0) return false;
+            return (number & (number - 1)) === 0;
+        }
+
+        document.getElementById('checkButton').addEventListener('click', () => {
+            const input = document.getElementById('inputNumber').value;
+            const number = parseInt(input, 10);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(number)) {
+                resultDiv.textContent = "Please enter a valid number.";
+                resultDiv.style.color = "red";
+                return;
+            }
+
+            const result = isPowerOfTwo(number);
+            resultDiv.textContent = result
+                ? `${number} is a power of 2.`
+                : `${number} is not a power of 2.`;
+            resultDiv.style.color = result ? "green" : "red";
+        });
+    </script>
 </body>
-
 </html>
+
